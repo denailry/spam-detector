@@ -3,12 +3,18 @@ package main
 import (
 	"fmt"
 	"strings"
-	"bufio"
+	"io/ioutil"
 	"os"
 )
 
 const CHAR_NUMBER int = 128;
 const NOTHING int = -1;
+
+func check(e error) {
+	if e != nil {
+		panic(e);
+	}
+}
 
 func analyzeLastOccurence(keywords string) [CHAR_NUMBER]int {
 	var charIndices [CHAR_NUMBER] int;
@@ -60,16 +66,12 @@ func solve(keywords, text string) int {
 }
 
 func main() {
-	reader := bufio.NewReader(os.Stdin);
-	fmt.Print("Text: ");
-	text, _ := reader.ReadString('\n');
-	fmt.Print("Keywords: ");
-	keywords, _ := reader.ReadString('\n');
+	keywords, err := ioutil.ReadFile(os.Args[1]);
+	check(err);
+	text, err := ioutil.ReadFile(os.Args[2]);
+	check(err);
 
-	text = text[0:len(text)-1];
-	keywords = keywords[0:len(keywords)-1];
-
-	idx := solve(keywords, text);
+	idx := solve(string(keywords), string(text));
 	if (idx != -1) {
 		fmt.Println("found it!");
 		fmt.Println(idx);
