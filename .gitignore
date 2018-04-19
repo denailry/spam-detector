@@ -1,3 +1,4 @@
 bin
 res/in/*
 config.json
+src/testcase
