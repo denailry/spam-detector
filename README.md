@@ -4,7 +4,8 @@
 ### TODO:
 1. Give the ability to get array of keywords and array of texts in the form of JSON from command arguments. If argument is null then read from file "input.json".
 2. User interface to input keywords and algorithm type.
-3. PHP executes string finder engine by argument.
+3. PHP handle request from user interface. 
+4. PHP executes string finder engine by argument.
 
 ---
 
