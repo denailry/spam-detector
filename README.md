@@ -2,10 +2,10 @@
 - Copy the config.json that has oauth key and secret to the project directory. This file is needed to make request to Twitter.
 
 ### TODO:
-1. Give the ability to get array of keywords and array of texts in the form of JSON from command arguments. If argument is null then read from file "input.json".
+1. Give the ability to get array of keywords and array of texts in the form of JSON from input.json.
 2. User interface to input keywords and algorithm type.
 3. PHP handle request from user interface. 
-4. PHP executes string finder engine by argument.
+4. PHP executes string finder engine.
 
 ---
 
