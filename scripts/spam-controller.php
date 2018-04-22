@@ -4,13 +4,15 @@
 	define("REGEX", 2);
 
 	function searchKeywords($input, $algorithm) {
-		file_put_contents("res/input.json", json_encode($input));
+		$inputPath = 'res\in\input.json';
+		$wrappedInputPath = '"'.$inputPath.'"';
+		file_put_contents($inputPath, json_encode($input));
 		if ($algorithm == BOYER_MOORE) {
-			$res = exec('call "bin\\boyer-moore.exe" "res\input.json"', $line, $status);
+			$res = exec('call "bin\\boyer-moore.exe" '.$wrappedInputPath, $line, $status);
 		} else if ($algorithm == KMP) {
-			$res = exec('call "bin\\KMP.exe" "res\input.json"', $line, $status);
+			$res = exec('call "bin\\KMP.exe" '.$wrappedIinputPath, $line, $status);
 		} else if ($algorithm == REGEX) {
-			$res = exec('call "bin\\regex.exe" "res\input.json"', $line, $status);
+			$res = exec('call "bin\\regex.exe" '. $wrappedInputPath, $line, $status);
 		}
 		return array("index" => $res, "status" => $status);
 	}
