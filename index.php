@@ -5,7 +5,7 @@
 	include_once "scripts/spam-controller.php";
 
 	$twit = getTimeLine(CLEAN_TWIT);
-	$req = getQuery(array("keywords", "algorithm"));
+	$req = getQuery(array("keywords", "algorithm", "page"));
 	if (notNull($req, array("keywords", "algorithm"))) {
 		for ($i = 0; $i < sizeof($twit); $i++) {
 			$input = array();
@@ -20,8 +20,18 @@
 	if (notNull($req, array("algorithm"))) {
 		export("algorithm", $req["algorithm"]);
 	}
+	if (notNull($req, array("page"))) {
+		if ($req["page"] == "about") {
+			$page = "view/templates/about.html";
+		} else {
+			$page = "view/templates/main.html";
+		}
+	} else {
+		$page = "view/templates/main.html";
+	}
 
 	export("twit", $twit);
+	export("page", $req["page"]);
 ?>
 <html>
 	<head>
@@ -34,7 +44,7 @@
 	<body>
 		<!-- Content -->
 		<?php
-			include_once "view/templates/main.html";
+			include_once $page;
 		?>
 
 		<!-- Javascript -->
@@ -43,6 +53,7 @@
         	var HTML_TWITS = <?php getVar("twit") ?>;
         	var HTML_KEYWORDS = <?php getVar("keywords", true) ?>;
         	var HTML_ALGORITHM = <?php getVar("algorithm") ?>;
+        	var HTML_PAGE = <?php getVar("page", true) ?>;
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
 			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 

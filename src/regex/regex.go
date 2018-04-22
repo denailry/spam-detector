@@ -40,8 +40,8 @@ func main() {
 	fmt.Println(string(keywords))
 	fmt.Println(string(text))
 	if matched && e == nil {
-		fmt.Println(0)
-	} else {
 		fmt.Println(-1)
+	} else {
+		fmt.Println(0)
 	}
 }

@@ -6,7 +6,9 @@ var state = HTML_ALGORITHM;
 var twits = HTML_TWITS;
 
 $(document).ready(function() {
-	console.log(HTML_KEYWORDS);
+	if (HTML_PAGE == "about") {
+		return;
+	}
 	$("#keywords").val(HTML_KEYWORDS);
 	var twitBox = ' \
 	<li class="list-group-item"> \
@@ -62,4 +64,12 @@ function changeState(algorithm) {
 		state = -1;
 	}
 	$("#query").submit();
+}
+
+function goToAbout() {
+	$("#about").submit();
+}
+
+function goToHome() {
+	$("#home").submit();
 }

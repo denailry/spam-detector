@@ -10,10 +10,13 @@
 
         <ul class="list-unstyled components">
             <li class="active">
-                <a href="#">
-                    <i class="glyphicon glyphicon-home"></i>
-                    Home
-                </a>
+                <form id="home" method="GET" action="index.php">
+                    <input name="page" type="hidden" value="home">
+                    <a onclick="goToHome()">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Home
+                    </a>
+                </form>
             </li>
             <!-- inactive links -->
             <li>
@@ -34,10 +37,13 @@
                     <button type="button" onclick="detectSpam()" class="btn-sidebar"><i class="glyphicon glyphicon-search"></i> Search</button>
                 </form>
                 
-                <a href="#" id="check-spam">
-                    <i class="glyphicon glyphicon-briefcase"></i>
-                    About
-                </a>
+                <form id="about" method="GET" action="index.php">
+                    <input name="page" type="hidden" value="about">
+                    <a onclick="goToAbout()">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                        About
+                    </a>
+                </form>
             </li>
             
         </ul>

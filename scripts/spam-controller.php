@@ -10,7 +10,7 @@
 		if ($algorithm == BOYER_MOORE) {
 			$res = exec('call "bin\\boyer-moore.exe" '.$wrappedInputPath, $line, $status);
 		} else if ($algorithm == KMP) {
-			$res = exec('call "bin\\KMP.exe" '.$wrappedIinputPath, $line, $status);
+			$res = exec('call "bin\\KMP.exe" '.$wrappedInputPath, $line, $status);
 		} else if ($algorithm == REGEX) {
 			$res = exec('call "bin\\regex.exe" '. $wrappedInputPath, $line, $status);
 		}

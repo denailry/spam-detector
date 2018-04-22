@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Twitter Spam Detector</h3>
+            <strong>TSD</strong>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="">
+                <form id="home" method="GET" action="index.php">
+                    <input name="page" type="hidden" value="home">
+                    <a onclick="goToHome()">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Home
+                    </a>
+                </form>
+            </li>
+            <li class="active"> 
+                <form id="about" method="GET" action="index.php">
+                    <input name="page" type="hidden" value="about">
+                    <a onclick="goToAbout()">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                        About
+                    </a>
+                </form>
+            </li>
+            
+        </ul>
+
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                        <span>Toggle Tools</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h2>App Info</h2>
+            <p>
+                This application is built with php as back-end controller, Golang as string matching engine, <br/>and powered by Bootstrap 3.3 and Twitter API.
+            </p>
+            <h2>Authors</h2>
+            <ul class="list-group tweets">
+                <li class="list-group-item">
+                    <!-- Glory -->
+                    <div class="row tweet">
+                        <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
+                            <img class="img-responsive" src="res/img/glory.jpg" alt="Glory">
+                        </div>
+                        <div class="col-md-10 col-sm-12">
+                            <h6 class="author-name">Gloryanson Ginting<br/>13516060</h6>
+                            <p class="tweet-message">
+                                Hello, my name is Glory.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <!-- Louis -->
+                <li class="list-group-item">
+                    <div class="row tweet">
+                        <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
+                            <img class="img-responsive" src="res/img/louis.jpg" alt="Louis">
+                        </div>
+                        <div class="col-md-10 col-sm-12">
+                            <h6 class="author-name">Louis Leslie<br/>13516087</h6>
+                            <p class="tweet-message">
+                                Hello, my name is Louis.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <!-- Daniel -->
+                <li class="list-group-item">
+                    <div class="row tweet">
+                        <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
+                            <img class="img-responsive" src="res/img/daniel.JPG" alt="Daniel">
+                        </div>
+                        <div class="col-md-10 col-sm-12">
+                            <h6 class="author-name">Daniel Ryan Levison<br/>13516132</h6>
+                            <p class="tweet-message">
+                                Hello, my name is Daniel.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- end of tweets -->
+        </div>
+        <!-- end of row -->
+    </div>
+</div>
