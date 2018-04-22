@@ -1,9 +1,13 @@
 <?php
-	header('Content-Type: application/json');
+	// header("content-type: application/json");	
 
 	include_once "scripts/oauth.php";
-	include_once "scripts/utils.php";
 	include_once "scripts/request.php";
+	include_once "scripts/utils.php";
 
-	echo json_encode(json_decode(getTimeLine()), JSON_PRETTY_PRINT);
+	$twit = getTimeLine(CLEAN_TWIT);
+
+	export("twit", $twit);
+
+	include_once "view/main.php";
 ?>

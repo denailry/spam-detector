@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
+	"encoding/json"
 )
 
 // NOTHING :  Not Found index
@@ -92,19 +92,29 @@ func MatchString(pattern, text string) int {
 	return found
 }
 
-func main() {
-	keywords, err := ioutil.ReadFile(os.Args[1])
-	check(err)
-	text, err := ioutil.ReadFile(os.Args[2])
-	check(err)
+func readJSON(filename string) (string, string) {
+	type Input struct {
+		Keywords string
+		Text string
+	}
+	var input Input;
 
+	inputJSON, ioErr := ioutil.ReadFile("res/input.json");
+	check(ioErr);
+	jsonErr := json.Unmarshal(inputJSON, &input);
+	if jsonErr == nil {
+		return input.Keywords, input.Text;
+	} else {
+		return "", "";
+	}
+}
+
+func main() {
+	keywords, text := readJSON("res/input.json")
 	idx := MatchString(string(keywords), string(text))
-	fmt.Println(string(keywords))
-	fmt.Println(string(text))
 	if idx != -1 {
-		fmt.Println("found it!")
 		fmt.Println(idx)
 	} else {
-		fmt.Println("cannot find it!")
+		fmt.Println(-1)
 	}
 }
