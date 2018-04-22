@@ -1,4 +1,7 @@
 <?php
+	define("CLEAN_TWIT", 0);
+	define("ALL_TWIT", 1);
+
 	function sendRequest($baseUrl, $param, $header=NULL) {
 		$request = curl_init(); 
 		curl_setopt($request,CURLOPT_URL,encodeUrl($baseUrl, $param));
@@ -18,10 +21,24 @@
 		return $result;
 	}
 
-	function getTimeLine() {
+	function getQuery($arrKeys) {
+		$res = array();
+		for ($i = 0; $i < sizeof($arrKeys); $i++) {
+			$key = $arrKeys[$i];
+			if (isset($_GET[$key])) {
+				$res[$key] = $_GET[$key];
+			} else {
+				$res[$key] = null;
+			}
+		}
+		return $res;
+	}
+
+	function getTimeLine($param=ALL_TWIT) {
 		$baseUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json";
 		$httpMethod = "GET";
 
+		$param = array();
 		$param["q"] = "new";
 		$param["count"] = 20;
 		$param["exclude_replies"] = true;
@@ -29,6 +46,19 @@
 
 		$header = makeOAuthHeader($httpMethod, $baseUrl, $param);
 
-		return sendRequest($baseUrl, $param, $header);
+		$response = array();
+		$response = json_decode(sendRequest($baseUrl, $param, $header), true);
+		if ($param == ALL_TWIT) {
+			return $response;
+		} else {
+			$res = array();
+			for ($i = 0; $i < sizeof($response); $i++) {
+				$res[$i] = array(
+					"text" => $response[$i]["text"],
+					"user" => $response[$i]["user"]["screen_name"]
+				);
+			}
+			return $res;
+		}
 	}
 ?>

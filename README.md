@@ -4,8 +4,11 @@
 ### TODO:
 1. Give the ability to get array of keywords and array of texts in the form of JSON from input.json.
 2. User interface to input keywords and algorithm type.
-3. PHP handle request from user interface. 
-4. PHP executes string finder engine.
+3. Test PHP execute spam engine (searchKeywords)
+4. Implement writeInput in spam-controller.php
+5. Test getVar and export in utils.php (done)
+6. Verify array key to get text and username from twitter response in getTimeLine (done)
+7. Test getTimeLine() (done)
 
 ---
 
