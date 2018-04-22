@@ -45,11 +45,15 @@
 		return $res;
 	}
 
+	function singleWrap($string, $wrapper) {
+		return $wrapper.$string.$wrapper;
+	}
+
 	function wrap($arr, $wrapper) {
 		$keys = array_keys($arr);
 		for ($i = 0; $i < sizeof($keys); $i++) {
 			$key = $keys[$i];
-			$arr[$key] = $wrapper.$arr[$key].$wrapper;
+			$arr[$key] = singleWrap($arr[$key], $wrapper);
 		}
 		return $arr;
 	}
@@ -92,22 +96,35 @@
 		return $res;
 	}
 
+	function notNull($arr, $keys) {
+		for ($i = 0; $i < sizeof($keys); $i++) {
+			if ($arr[$keys[$i]] == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/*
 	 * Use this to get value of PHP variable 
 	 * from html or js code 
 	 */
 	function getVar($var, $wrap=false) {
 		global $EXPORT;
-		if (gettype($EXPORT[$var]) == "array") {
-			echo json_encode($EXPORT[$var]);
-		} else if (gettype($EXPORT[$var]) == "string") {
-			if ($wrap) {
-				echo wrap($EXPORT[$var], '"');
-			} else {
-				echo $EXPORT[$var]; 
-			}
+		if (!isset($EXPORT[$var])) {
+			echo "null";
 		} else {
-			echo $EXPORT[$var];
+			if (gettype($EXPORT[$var]) == "array") {
+				echo json_encode($EXPORT[$var]);
+			} else if (gettype($EXPORT[$var]) == "string") {
+				if ($wrap) {
+					echo singleWrap($EXPORT[$var], '"');
+				} else {
+					echo $EXPORT[$var]; 
+				}
+			} else {
+				echo $EXPORT[$var];
+			}
 		}
 	}
 

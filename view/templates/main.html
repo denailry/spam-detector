@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Twitter Spam Detector</h3>
+            <strong>TSD</strong>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Home
+                </a>
+            </li>
+            <!-- inactive links -->
+            <li>
+                <a href="#algorithms" data-toggle="collapse" aria-expanded="false">
+                    <i class="glyphicon glyphicon-duplicate"></i>
+                    Algorithms
+                </a>
+                <ul class="collapse list-unstyled" id="algorithms">
+                    <li><a id="algorithm-1" onclick="changeState('bm')">Boyer-Moore</a></li>
+                    <li><a id="algorithm-2" onclick="changeState('kmp')">Knuth-Morris-Pratt</a></li>
+                    <li><a id="algorithm-3" onclick="changeState('regex')">Regex</a></li>
+                </ul>
+                
+                <form id="query" method="GET" action="index.php">
+                    <h5>Input Keywords</h5>
+                    <input id="keywords" name="keywords" type="text" class="form-control" placeholder="Keywords">
+                    <input id="algorithm" name="algorithm" type="hidden">
+                    <button type="button" onclick="detectSpam()" class="btn-sidebar"><i class="glyphicon glyphicon-search"></i> Search</button>
+                </form>
+                
+                <a href="#" id="check-spam">
+                    <i class="glyphicon glyphicon-briefcase"></i>
+                    About
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                        <span>Toggle Tools</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h2>Tweets</h2>
+            <ul id="twit-group" class="list-group tweets">
+            </ul>
+            <!-- end of tweets -->
+        </div>
+        <!-- end of row -->
+    </div>
+</div>

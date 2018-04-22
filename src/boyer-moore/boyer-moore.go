@@ -5,6 +5,7 @@ import (
 	"strings"
 	"io/ioutil"
 	"encoding/json"
+	"os"
 )
 
 const CHAR_NUMBER int = 128;
@@ -14,6 +15,16 @@ func check(e error) {
 	if e != nil {
 		panic(e);
 	}
+}
+
+func normalize(text string) string {
+	runes := []rune(text);
+	for i := 0; i < len(runes); i++ {
+		if (int(runes[i]) >= CHAR_NUMBER) {
+			runes[i] = '0';
+		}
+	}
+	return string(runes);
 }
 
 func analyzeLastOccurence(keywords string) [CHAR_NUMBER]int {
@@ -32,7 +43,7 @@ func analyzeLastOccurence(keywords string) [CHAR_NUMBER]int {
 
 func solve(keywords, text string) int {
 	keywords = strings.ToLower(keywords);
-	text = strings.ToLower(text);
+	text = strings.ToLower(normalize(text));
 
 	charIndices := analyzeLastOccurence(keywords);
 
@@ -43,6 +54,7 @@ func solve(keywords, text string) int {
 	found := -1;
 
 	for (i < iMax && found == -1) {
+		j = 0;
 		for (j <= jMax && keywords[jMax - j] == text[i - j]) {
 			j++;
 		}
@@ -72,8 +84,9 @@ func readJSON(filename string) (string, string) {
 	}
 	var input Input;
 
-	inputJSON, ioErr := ioutil.ReadFile("res/input.json");
+	inputJSON, ioErr := ioutil.ReadFile(filename);
 	check(ioErr);
+
 	jsonErr := json.Unmarshal(inputJSON, &input);
 	if jsonErr == nil {
 		return input.Keywords, input.Text;
@@ -83,7 +96,14 @@ func readJSON(filename string) (string, string) {
 }
 
 func main() {
-	keywords, text := readJSON("res/input.json");
+	keywords, text := readJSON(os.Args[1]);
+	fmt.Println(keywords);
+	fmt.Println(text);
 	idx := solve(keywords, text);
+
+	if (idx != -1) {
+		fmt.Println(text[idx:]);
+	}
+
 	fmt.Println(idx);
 }

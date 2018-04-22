@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"encoding/json"
+	"os"
 )
 
 // NOTHING :  Not Found index
@@ -99,7 +100,7 @@ func readJSON(filename string) (string, string) {
 	}
 	var input Input;
 
-	inputJSON, ioErr := ioutil.ReadFile("res/input.json");
+	inputJSON, ioErr := ioutil.ReadFile(filename);
 	check(ioErr);
 	jsonErr := json.Unmarshal(inputJSON, &input);
 	if jsonErr == nil {
@@ -110,7 +111,7 @@ func readJSON(filename string) (string, string) {
 }
 
 func main() {
-	keywords, text := readJSON("res/input.json")
+	keywords, text := readJSON(os.Args[1]);
 	idx := MatchString(string(keywords), string(text))
 	if idx != -1 {
 		fmt.Println(idx)

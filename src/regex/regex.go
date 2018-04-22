@@ -5,6 +5,7 @@ import (
 	"regexp"
 	"io/ioutil"
 	"encoding/json"
+	"os"
 )
 
 const NOTHING int = -1;
@@ -22,7 +23,7 @@ func readJSON(filename string) (string, string) {
 	}
 	var input Input;
 
-	inputJSON, ioErr := ioutil.ReadFile("res/input.json");
+	inputJSON, ioErr := ioutil.ReadFile(filename);
 	check(ioErr);
 	jsonErr := json.Unmarshal(inputJSON, &input);
 	if jsonErr == nil {
@@ -33,7 +34,7 @@ func readJSON(filename string) (string, string) {
 }
 
 func main() {
-	keywords, text := readJSON("res/input.json");
+	keywords, text := readJSON(os.Args[1]);
 
 	matched, e := regexp.MatchString("(?i)"+string(keywords), string(text))
 	fmt.Println(string(keywords))
