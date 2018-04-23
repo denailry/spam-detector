@@ -9,6 +9,13 @@ $(document).ready(function() {
 	if (HTML_PAGE == "about") {
 		return;
 	}
+	if (HTML_ALGORITHM == STATE_BOYER_MOORE) {
+		$("#title").html("Tweets (Boyer-Moore)");
+	} else if (HTML_ALGORITHM == STATE_KMP) {
+		$("#title").html("Tweets (KMP)");
+	} else if (HTML_ALGORITHM == STATE_REGEX) {
+		$("#title").html("Tweets (REGEX)");
+	}
 	$("#keywords").val(HTML_KEYWORDS);
 	var twitBox = ' \
 	<li class="list-group-item"> \
