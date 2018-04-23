@@ -96,6 +96,10 @@ i, span {
     display: block;
 }
 
+#sidebar.active form button{
+    text-align: center;
+}
+
 #sidebar ul li a {
     text-align: left;
 }
@@ -160,7 +164,7 @@ i, span {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #f00;
+    background-color: #f00;
 }
 
 
